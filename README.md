@@ -121,6 +121,92 @@ asyncio.run(bulk_upload())
 
 ---
 
+## Core Modules Overview
+
+The SDK exposes 13 distinct modules.
+
+### `cloud.files`
+- `upload(path: Union[str, Path], folder_id: Optional[int], node: str, stash: bool)`: Upload a file.
+- `download(file_id: int, dest: Union[str, Path])`: Download a file.
+- `list(folder_id: Optional[int], node: str, favorites: bool)`: List files in a directory.
+- `read(file_id: int)`: Read the raw text contents of a file.
+- `info(file_id: int)`: Get detailed metadata.
+- `rename(file_id: int, new_name: str)`: Rename a file.
+- `move(file_id: int, folder_id: int)`: Move a file to a new folder.
+- `delete(file_id: int)`: Delete a file permanently.
+- `favorite(file_id: int)`: Toggle a file's favorite status.
+
+### `cloud.folders`
+- `create(name: str, parent_id: Optional[int])`: Create a new directory.
+- `list(folder_id: Optional[int])`: List sub-directories.
+- `rename(folder_id: int, new_name: str)`: Rename a directory.
+- `move(folder_id: int, new_parent_id: int)`: Move a folder.
+- `delete(folder_id: int)`: Delete a folder.
+- `favorite(folder_id: int)`: Toggle a folder's favorite status.
+
+### `cloud.stash`
+- `add(file_id: int, days: int)`: Secure an existing file in your stash (recycle bin style).
+- `restore(stash_id: int)`: Restore a file from the stash.
+- `list()`: List all stashed items.
+- `empty()`: Permanently delete all stashed files.
+
+### `cloud.batch` (Bulk Operations)
+- `delete(file_ids: List[int])`: Delete multiple files.
+- `move(file_ids: List[int], folder_id: int)`: Move multiple files.
+- `stash(file_ids: List[int], days: int)`: Stash multiple files.
+- `share(file_ids: List[int], user: str)`: Share multiple files at once.
+- `link(file_ids: List[int])`: Generate a public link for a bundle of files.
+
+### `cloud.share`
+- `create(item_id: int, user: str, permission: str, item_type: str)`: Share a file/folder with a user.
+- `link(item_id: int, item_type: str)`: Create a public shareable URL.
+- `info(item_id: int, item_type: str)`: Get sharing metadata.
+- `disable_link(item_id: int)`: Revoke access to a public link.
+
+### `cloud.search`
+- `query(q: str, filter_type: str, filter_date: str)`: Search files and folders globally.
+
+### `cloud.favorites`
+- `list_files()`: List all favorited files.
+- `list_folders()`: List all favorited folders.
+- `toggle_file(file_id: int)`: Toggle a file's favorite status.
+- `toggle_folder(folder_id: int)`: Toggle a folder's favorite status.
+
+### `cloud.servers`
+- `list()`: List all registered private node servers.
+- `add()`: Generate a new API key for a private node.
+- `delete(node_id: int)`: Remove a private node from your account.
+
+### `cloud.profile` & `cloud.auth`
+- Manage your account, upload avatars, enable 2FA, register, reset passwords, and login.
+
+### `cloud.storage`, `cloud.notifications`, `cloud.prefs`, `cloud.batch_share`
+- Monitor storage stats, manage email preferences, handle share invites, and manage named batch shares.
+
+---
+
+## Exception Handling
+
+The SDK provides specific exceptions directly from the `mycloud` package.
+
+```python
+from mycloud import MyCloud
+from mycloud import AuthError, NotFoundError, ValidationError
+
+cloud = MyCloud()
+
+try:
+    cloud.files.download(9999999, dest=".")
+except NotFoundError:
+    print("The requested file does not exist!")
+except AuthError:
+    print("Your session has expired. Please login again.")
+except ValidationError as e:
+    print(f"Invalid input: {e}")
+```
+
+---
+
 ## Technology Stack
 
 | Category | Technology |
