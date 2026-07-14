@@ -53,7 +53,7 @@ graph TD
             Stash[StashModule]
         end
         
-        HTTP[_Client / _AsyncClient<br/>(HTTPX)]
+        HTTP["_Client / _AsyncClient<br/>(HTTPX)"]
     end
 
     subgraph "myCloud API"
@@ -152,6 +152,9 @@ asyncio.run(bulk_upload())
 
 ## Contact & Links
 
+- **Email:** kanhaiffco2007@gmail.com
+- **LinkedIn:** [linkedin.com/in/rudransh-shekhar](https://linkedin.com/in/rudransh-shekhar)
+- **Portfolio:** [rudransh-shekhar.netlify.app](https://rudransh-shekhar.netlify.app)
 - **PyPI Package:** [mycloud-sdk](https://pypi.org/project/mycloud-sdk/)
 - **Live Platform:** [cloud.mysphere.co.in](https://cloud.mysphere.co.in)
 - **Ecosystem Hub:** [mysphere.co.in](https://mysphere.co.in)
