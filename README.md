@@ -9,7 +9,7 @@
 
   ![PyPI version](https://img.shields.io/pypi/v/mycloud-sdk.svg)
   ![Python Versions](https://img.shields.io/pypi/pyversions/mycloud-sdk.svg)
-  ![License](https://img.shields.io/github/license/mysphere/mycloud-sdk)
+  ![License](https://img.shields.io/github/license/rudy-07/mycloud-sdk)
 </div>
 
 ---
